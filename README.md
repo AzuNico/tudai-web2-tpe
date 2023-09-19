@@ -7,5 +7,5 @@ Repositorio público para Trabajo Práctico Especial de la materia WEB II de la 
 
 Este proyecto fue creado por:
 
-- Nicolás Azuaga
-- Luca Ochoa Marcos
+- Nicolás Azuaga (azuaganicolas@gmail.com)
+- Luca Ochoa Marcos (ochoa.luca@gmail.com)
