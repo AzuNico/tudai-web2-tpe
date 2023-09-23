@@ -9,6 +9,10 @@ Edad, peso, vacunas, desparasitaciones, raza.
 El usuario objetivo es el dueño de la mascota.
 La idea es que se pueda compartir la información con tú veterinario y llevar un registro de la salud del animal.
 
+## DER
+
+![DER](DER_LIBRETA_SANITARIA.png)
+
 
 ## Autores
 
