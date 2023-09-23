@@ -1,7 +1,7 @@
 # tudai-web2-tpe
 Repositorio público para Trabajo Práctico Especial de la materia WEB II de la carrera TUDAI en UNICEN
 
-## Tematica
+## Temática
 Libreta sanitaria digital para mascotas.
 Web App para llevar el registro de tú mascota, por ejemplo:
 Edad, peso, vacunas, desparasitaciones, raza.
