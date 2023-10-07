@@ -11,7 +11,7 @@ La idea es que se pueda compartir la información con tú veterinario y llevar u
 
 ## DER
 
-![DER](DER_LIBRETA_SANITARIA.png)
+![DER](DER_LIBRETA_MASCOTAS.png)
 
 
 ## Autores
