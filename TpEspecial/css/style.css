@@ -1,0 +1,34 @@
+.header {
+    margin: 5px;
+    margin-left: 15px;
+    border: black 2px solid;
+    background-color: gray;
+    width: max-content;
+    padding: 1px 10px 1px 10px;
+}
+
+.list-of-options {
+    padding: 30px;
+}
+
+.list-option {
+    padding : 10px;
+    list-style: none;
+    
+}
+.list-option a{
+    text-decoration: none;
+}
+
+.main-container {
+    margin: 5px;
+    border: black 2px solid;
+    background-color: rgb(187, 202, 214);
+    width: max-content;
+}
+
+.footer {
+    display:flex;
+    justify-content: space-between;
+    width: 200px;
+}

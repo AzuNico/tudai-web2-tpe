@@ -1,0 +1,25 @@
+
+<?php require_once 'templates/header.phtml' ?>
+
+<table class="table-owners">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Mail</th>
+            <th>ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+<?php foreach($owners as $owner): ?>
+    <tr>
+        <td><?= $owner->NOMBRE ?></td>
+        <td><?= $owner->MAIL ?></td>
+        <td><?= $owner->ID ?> </td>
+    </tr>
+
+<?php endforeach ?>
+    </tbody>    
+</table>
+
+<?php require_once 'templates/footer.phtml' ?>

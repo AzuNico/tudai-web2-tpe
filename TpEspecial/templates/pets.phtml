@@ -1,0 +1,22 @@
+<a href='../options'> Volver </a>
+<?php require_once 'templates/header.phtml' ?>
+
+<table class="table-pets">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Años</th>
+            <th>ID Dueño</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach($pets as $pet): ?>
+    <tr>
+        <td><?= $pet->NOMBRE ?></td>
+        <td><?= $pet->EDAD ?></td>
+        <td><?= $pet->ID_DUENIO ?></td>
+    </tr>
+
+<?php endforeach ?>
+    </tbody>    
+</table>

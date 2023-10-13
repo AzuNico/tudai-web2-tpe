@@ -1,0 +1,15 @@
+<?php require 'templates/header.phtml' ?>
+
+<ul class="list-of-options">
+<?php foreach($options as $option): ?>
+    <li class="list-option">
+        <div >
+            <a href='list-items/' > <?= $option ?> </a>
+        </div>
+    </li>
+
+
+<?php endforeach ?>
+</ul>
+
+<?php require 'templates/footer.phtml' ?>
