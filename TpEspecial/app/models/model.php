@@ -20,7 +20,7 @@ class Model {
     }
 
 
-    public function getAllMascots(){
+    public function getPets(){
         $query = $this->db->prepare('SELECT * FROM `mascotas` WHERE 1');
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);

@@ -31,6 +31,18 @@ switch ($params[0]) {
         $controller = new Controller();
         $controller->listItems();
         break;
+    case 'list-categories':
+        $controller = new Controller();
+        $controller->listCategories();
+        break;
+    case 'list-owners':
+        $controller = new Controller();
+        $controller->listOwners();
+        break;
+    case 'list-pets':
+        $controller = new Controller();
+        $controller->listPets();
+        break;
         /*
     case 'agregar':
         $controller = new TaskController();

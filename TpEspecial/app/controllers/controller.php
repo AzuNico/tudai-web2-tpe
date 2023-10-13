@@ -12,9 +12,10 @@ class Controller {
 
     public function showOptions(){
         $options = 
-        array( 'Listado de items',
-                'Listado de categorias',
-                'Listado de items por categoria',
+        array( 'Listado de Items',
+                'Listado de Mascotas',
+                'Listado de Dueños',
+                'Listado de Categorias',
             );
         $this->view->showOptions($options);
     }
@@ -26,8 +27,24 @@ class Controller {
     
         $this->view->showOwnersAndPets($pets, $owners);
     }
-    
-    
 
+
+    public function listCategories() {
+        $data = $this->model->getAll();
+        $pets = $data['mascotas'];
+        $owners = $data['duenio'];
     
+        $this->view->showOwnersAndPets($pets, $owners);
+    }
+
+    public function listOwners(){
+        $owners = $this->model->getOwners();
+        $this->view->showOwners($owners);
+    }
+    public function listPets(){
+        $pets = $this->model->getPets();
+        $this->view->showPets($pets);
+    }
+    
+      
 }

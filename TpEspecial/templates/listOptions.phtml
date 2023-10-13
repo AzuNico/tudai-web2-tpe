@@ -3,8 +3,31 @@
 <ul class="list-of-options">
 <?php foreach($options as $option): ?>
     <li class="list-option">
-        <div >
-            <a href='list-items/' > <?= $option ?> </a>
+        <div>
+            <?php 
+            switch ($option) {
+                case 'Listado de Items':
+                    ?>
+                        <a href='list-items/'><?= $option ?></a>
+                    <?php
+                    break;
+                case 'Listado de Mascotas':
+                    ?>
+                        <a href='list-pets/'><?= $option ?></a>
+                    <?php
+                    break;
+                case 'Listado de Dueños':
+                    ?>
+                        <a href='list-owners/'><?= $option ?></a>
+                    <?php
+                    break;
+                case 'Listado de Categorias':
+                    ?>
+                        <a href='list-categories/'><?= $option ?></a>
+                    <?php
+                    break;      
+            }
+            ?>
         </div>
     </li>
 
