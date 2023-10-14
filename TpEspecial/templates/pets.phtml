@@ -10,14 +10,19 @@
             <th>Nombre</th>
             <th>Años</th>
             <th>ID Dueño</th>
+            <th>Nombre del dueño</th>
         </tr>
     </thead>
     <tbody>
-<?php foreach($pets as $pet): ?>
+<?php foreach($pets as $pet): 
+    $petowner = $pet->ID_DUENIO - 1;
+    $ownerid = $owners[$petowner];
+    ?>
     <tr>
         <td><?= $pet->NOMBRE ?></td>
         <td><?= $pet->EDAD ?></td>
         <td><?= $pet->ID_DUENIO ?></td>
+        <td><?= $ownerid->NOMBRE ?></td>
         <td><a href="../pet/<?= $pet->ID?>"> Ver en detalle</a></td>
     </tr>
 
@@ -25,5 +30,4 @@
     </tbody>    
 </table>
 
-
-<?php require_once 'templates/footer.phtml' ?>
+<!-- si pongo el footer el owners que se agrega despues queda afuera. require 'templates/footer.phtml'  -->

@@ -15,7 +15,7 @@ class View {
     }
 
 
-    public function showPets($pets){
+    public function showPets($pets,$owners){
         require 'templates/pets.phtml';
     }
 
@@ -32,7 +32,7 @@ class View {
         require 'templates/specificOwner.phtml';
     }
 
-    public function showSpecificPet($pet){
+    public function showSpecificPet($pet,$owner){
         require 'templates/specificPet.phtml';
     }
 }

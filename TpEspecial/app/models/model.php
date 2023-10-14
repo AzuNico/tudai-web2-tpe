@@ -5,7 +5,8 @@ class Model {
     
     public function __construct()
     {
-        $this->db = new PDO('mysql:host=localhost;dbname=libretamascotas;charset=utf8', 'root', '');
+        require('config.php');
+        $this->db = new PDO($db_dsn, $db_user, $db_pass);
     }
 
 

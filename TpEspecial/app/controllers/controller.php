@@ -30,7 +30,7 @@ class Controller {
 
 
     public function listCategories() {
-        $data = $this->model->getAll();
+        $data = $this->model->getAll(); // MODIFICAR
         $pets = $data['mascotas'];
         $owners = $data['duenio'];
     
@@ -42,8 +42,10 @@ class Controller {
         $this->view->showOwners($owners);
     }
     public function listPets(){
-        $pets = $this->model->getPets();
-        $this->view->showPets($pets);
+        $data = $this->model->getAll();
+        $pets = $data['mascotas'];
+        $owners = $data['duenio'];
+        $this->view->showPets($pets,$owners);
     }
     
     public function specificOwner($idowner){
@@ -53,7 +55,9 @@ class Controller {
 
     public function specificPet($idpet){
         $pet = $this->model->getPetByID($idpet);
-        $this->view->showSpecificPet($pet);
+        $idowner = $pet->ID_DUENIO;
+        $owner = $this->model->getOwnerByID($idowner);
+        $this->view->showSpecificPet($pet,$owner);
     }
       
 }
