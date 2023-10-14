@@ -1,0 +1,29 @@
+<?php require_once 'templates/buttonHome.phtml' ?>
+<?php require_once 'templates/header.phtml' ?>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+<table class="table">
+    <h2>Dueño con id <?= $owner->ID ?> :</h2>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Mail</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    <tr>
+        <td><?= $owner->ID ?></td>
+        <td><?= $owner->NOMBRE ?></td>
+        <td><?= $owner->MAIL ?> </td>
+        <td> <?= $owner->TELEFONO ?> </td>
+    </tr>
+
+    </tbody>    
+</table>
+
+
+<?php require 'templates/footer.phtml' ?>

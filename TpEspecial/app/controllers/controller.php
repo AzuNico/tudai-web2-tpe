@@ -46,5 +46,14 @@ class Controller {
         $this->view->showPets($pets);
     }
     
+    public function specificOwner($idowner){
+        $owner = $this->model->getOwnerByID($idowner);
+        $this->view->showSpecificOwner($owner);
+    }
+
+    public function specificPet($idpet){
+        $pet = $this->model->getPetByID($idpet);
+        $this->view->showSpecificPet($pet);
+    }
       
 }

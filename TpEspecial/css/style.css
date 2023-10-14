@@ -1,10 +1,27 @@
 .header {
     margin: 5px;
-    margin-left: 15px;
+    margin-left: 37%;
     border: black 2px solid;
     background-color: gray;
     width: max-content;
     padding: 1px 10px 1px 10px;
+}
+
+nav {
+    background-color: grey;
+    display: flex;
+    width: max-content;
+    border-collapse: collapse;
+    border-right: black 2px solid;
+}
+nav div {
+    padding: 15px;
+    border: black 2px solid;
+    border-right: none;
+}
+nav a {
+    text-decoration: none;
+    color: #000000;
 }
 
 .list-of-options {
@@ -22,47 +39,42 @@
 
 .main-container {
     margin: 5px;
+    margin-left: 30%;
     padding: 30px;
     border: black 2px solid;
     background-color: rgb(187, 202, 214);
     width: max-content;
 }
 
-.table-pets {
+.table {
     padding: 10px;
     margin: 5px;
     border: 2px solid black;
     border-collapse: collapse;
 }
-.table-pets th{
+.table th{
     border: 2px solid black;
     padding: 5px;
 }
 
-.table-pets td{
+.table td{
     border: 2px solid black;
     padding: 5px;
     text-align: center;
 }
 
-.table-owners {
-    margin: 5px;
-    padding: 10px;
-    border: 2px solid black;
-    border-collapse: collapse;
-}
-.table-owners th{
-    border: 2px solid black;
-    padding: 5px;
-}
 
-.table-owners td{
-    border: 2px solid black;
-    padding: 5px;
-    text-align: center;
-}
 .footer {
+    margin-left: 37%;
     display:flex;
-    justify-content: space-between;
-    width: 200px;
+    background-color: grey;
+    width: max-content;
+    border-collapse: collapse;
+    border-right: black 2px solid;
+}
+
+.footer div {
+    padding: 10px;
+    border: black 2px solid;
+    border-right: none;
 }

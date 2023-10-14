@@ -1,0 +1,33 @@
+<?php require_once 'templates/buttonHome.phtml' ?>
+<?php require_once 'templates/header.phtml' ?>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+<table class="table">
+    <h2>Mascota con id <?= $pet->ID ?> :</h2>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Peso</th>
+            <th>Tipo</th>
+            <th>Id del dueño</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    <tr>
+        <td><?= $pet->ID ?></td>
+        <td><?= $pet->NOMBRE ?></td>
+        <td><?= $pet->EDAD ?> </td>
+        <td><?= $pet->PESO ?> </td>
+        <td><?= $pet->TIPO ?> </td>
+        <td><?= $pet->ID_DUENIO ?> </td>
+    </tr>
+
+    </tbody>    
+</table>
+
+
+<?php require 'templates/footer.phtml' ?>

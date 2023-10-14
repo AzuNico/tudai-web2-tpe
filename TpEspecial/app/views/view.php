@@ -27,4 +27,12 @@ class View {
         require 'templates/pets.phtml';
         require 'templates/owners.phtml';
     }
+
+    public function showSpecificOwner($owner){
+        require 'templates/specificOwner.phtml';
+    }
+
+    public function showSpecificPet($pet){
+        require 'templates/specificPet.phtml';
+    }
 }

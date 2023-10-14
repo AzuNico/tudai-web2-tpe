@@ -1,24 +1,25 @@
-<?php require_once 'templates/buttonBack.phtml' ?>
+<?php require_once 'templates/buttonHome.phtml' ?>
 <?php require_once 'templates/header.phtml' ?>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 
-<table class="table-owners">
+<table class="table">
     <h2>Dueños:</h2>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Mail</th>
-            <th>ID</th>
         </tr>
     </thead>
     <tbody>
         
 <?php foreach($owners as $owner): ?>
     <tr>
+        <td><?= $owner->ID ?></td>
         <td><?= $owner->NOMBRE ?></td>
-        <td><?= $owner->MAIL ?></td>
-        <td><?= $owner->ID ?> </td>
+        <td><?= $owner->MAIL ?> </td>
+        <td><a href="../owner/<?= $owner->ID?>"> Ver en detalle</a></td>
     </tr>
 
 <?php endforeach ?>

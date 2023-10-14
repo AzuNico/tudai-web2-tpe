@@ -43,6 +43,24 @@ switch ($params[0]) {
         $controller = new Controller();
         $controller->listPets();
         break;
+    case 'owner':
+        if ($params[1] != null) {
+            $controller = new Controller();
+            $controller->specificOwner($params[1]);
+        }
+        else{
+            echo 'Especifique la id del dueño';
+        }
+        break;
+    case 'pet':
+        if ($params[1] != null) {
+            $controller = new Controller();
+            $controller->specificPet($params[1]);
+        }
+        else{
+            echo 'Especifique la id de la mascota';
+        }
+        break;
         /*
     case 'agregar':
         $controller = new TaskController();

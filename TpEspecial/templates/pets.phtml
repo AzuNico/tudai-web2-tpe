@@ -1,8 +1,9 @@
-<?php require_once 'templates/buttonBack.phtml' ?>
+<?php require_once 'templates/buttonHome.phtml' ?>
 <?php require_once 'templates/header.phtml' ?>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css">
-<table class="table-pets">
+
+<table class="table">
     <h2>Mascotas: </h2>
     <thead>
         <tr>
@@ -17,8 +18,12 @@
         <td><?= $pet->NOMBRE ?></td>
         <td><?= $pet->EDAD ?></td>
         <td><?= $pet->ID_DUENIO ?></td>
+        <td><a href="../pet/<?= $pet->ID?>"> Ver en detalle</a></td>
     </tr>
 
 <?php endforeach ?>
     </tbody>    
 </table>
+
+
+<?php require_once 'templates/footer.phtml' ?>

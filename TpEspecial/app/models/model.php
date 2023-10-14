@@ -32,6 +32,18 @@ class Model {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getOwnerByID($id){
+        $query = $this->db->prepare('SELECT * FROM `duenio` WHERE `ID` = ?');
+        $query-> execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function getPetByID($id){
+        $query = $this->db->prepare('SELECT * FROM `mascotas` WHERE `ID` = ?');
+        $query-> execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function getAll(){
         $query = $this->db->prepare('SELECT * FROM `mascotas` WHERE 1');
         $query->execute();
