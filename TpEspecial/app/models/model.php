@@ -6,18 +6,7 @@ class Model {
     public function __construct()
     {
         require('config.php');
-        $this->db = new PDO($db_dsn, $db_user, $db_pass);
-    }
-
-
-    function getOptions() {
-        $query = $this->db->prepare('SELECT * FROM tareas');
-        $query->execute();
-
-        // $tasks es un arreglo de tareas
-        $tasks = $query->fetchAll(PDO::FETCH_OBJ);
-
-        return $tasks;
+        $this->db = new PDO($db_dsn, $db_user, $db_pass);   
     }
 
 

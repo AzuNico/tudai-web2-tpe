@@ -6,8 +6,20 @@ class Controller {
     private $view;
 
     public function __construct() {
+
+        $this->checkLoggedIn();
+
         $this->model = new Model();
         $this->view = new View();
+    }
+
+    private function checkLoggedIn() {
+        session_start();
+        if (!isset($_SESSION['ID_USER'])) {
+            //header('Location: ' . LOGIN);
+            die();
+        }
+            
     }
 
     public function showOptions(){
