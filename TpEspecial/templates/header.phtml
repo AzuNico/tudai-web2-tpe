@@ -8,8 +8,17 @@
 </head>
 <body>
     <div class="header">
-        <h1 class="header-titulo"> Veterinaria</h1>
+        <div>
+            <?php if (!isset($_SESSION['ID_USER'])) {
+                ?> <p> Estas Logueado </p> 
+            <?php
+            }
+            
+            ?>
+            <h1 class="header-titulo"> Veterinaria</h1>
+        </div>
     </div>
+    
 
 
     <!-- Inicio Main Container -->

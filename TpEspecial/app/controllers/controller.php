@@ -17,7 +17,7 @@ class Controller {
         session_start();
         if (!isset($_SESSION['ID_USER'])) {
             //header('Location: ' . LOGIN);
-            die();
+            //die();
         }
             
     }
@@ -53,6 +53,7 @@ class Controller {
         $owners = $this->model->getOwners();
         $this->view->showOwners($owners);
     }
+    
     public function listPets(){
         $data = $this->model->getAll();
         $pets = $data['mascotas'];

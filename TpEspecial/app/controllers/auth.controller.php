@@ -21,7 +21,6 @@ class AuthController {
         $user = $_POST['user'];
         $password = $_POST['password'];
 
-        echo $user,$password;
 
         if (empty($user) || empty($password)) {
             $this->view->showLogin('Faltan completar datos');
@@ -34,7 +33,7 @@ class AuthController {
             
             AuthHelper::login($user);
 
-            header('Location: ver');
+            header('Location: options');
             
         } else {
             $this->view->showLogin('Inicio de sesión incorrecto!');
