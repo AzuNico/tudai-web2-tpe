@@ -2,13 +2,7 @@
 class PetView
 {
 
-    public function showOptions($options)
-    {
-        $count = count($options);
-
-        // NOTA: el template va a poder acceder a todas las variables y constantes que tienen alcance en esta funcion
-
-        // mostrar el template
+    public function showOptions($options) {
         require 'templates/listOptions.phtml';
     }
 
