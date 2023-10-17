@@ -11,16 +11,6 @@ if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
 
-
-// listar    ->         taskController->showOptions();
-// agregar   ->         taskController->addTask();
-// eliminar/:ID  ->     taskController->removeTask($id); 
-// finalizar/:ID  ->    taskController->finishTask($id);
-// login ->             authController->showLogin();
-// logout ->            authController->logout();
-// auth                 authController->auth(); // toma los datos del post y autentica al usuario
-
-
 // parsea la accion para separar accion real de parametros
 $params = explode('/', $action);
 
