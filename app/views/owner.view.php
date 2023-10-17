@@ -31,4 +31,14 @@ class OwnerView {
     public function showSpecificPet($pet,$owner){
         require 'templates/specificPet.phtml';
     }
+
+    public function showEditOwner($item){
+        $itemType = 'owner';
+        require 'templates/formCreateEdit.phtml';
+    }
+
+    public function showCreateOwner(){
+        $itemType = 'owner';
+        require 'templates/formCreateEdit.phtml';
+    }
 }
