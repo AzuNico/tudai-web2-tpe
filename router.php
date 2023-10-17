@@ -33,6 +33,10 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showLogin();
         break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
+        break;
     case 'auth':
         $controller = new AuthController();
         $controller->auth();
