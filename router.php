@@ -1,13 +1,13 @@
 <?php
 require_once './app/controllers/controller.php';
 require_once './app/controllers/auth.controller.php';
-// require_once './app/controllers/owner.controller.php';
-// require_once './app/controllers/pet.controller.php';
+require_once './app/controllers/owner.controller.php';
+require_once './app/controllers/pet.controller.php';
 
-define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
 $action = 'options'; // accion por defecto
-if (!empty( $_GET['action'])) {
+if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
 
@@ -61,8 +61,7 @@ switch ($params[0]) {
         if ($params[1] != null) {
             $controller = new Controller();
             $controller->specificOwner($params[1]);
-        }
-        else{
+        } else {
             echo 'Especifique la id del dueño';
         }
         break;
@@ -70,12 +69,35 @@ switch ($params[0]) {
         if ($params[1] != null) {
             $controller = new Controller();
             $controller->specificPet($params[1]);
-        }
-        else{
+        } else {
             echo 'Especifique la id de la mascota';
         }
         break;
-    default: 
+    case 'add-pet':
+        $controller = new PetController();
+        $controller->showCreatePet();
+        break;
+    case 'create-pet':
+        $controller = new PetController();
+        $controller->createPet();
+        break;
+    case 'pet-edit':
+        if ($params[1] != null) {
+            $controller = new PetController();
+            $controller->showEditPet($params[1]);
+        } else {
+            echo 'Especifique la id de la mascota';
+        }
+        break;
+    case 'update-pet':
+        if ($params[1] != null) {
+            $controller = new PetController();
+            $controller->editPet($params[1]);
+        } else {
+            echo 'Especifique la id de la mascota';
+        }
+        break;
+    default:
         echo "404 Page Not Found";
         break;
 }

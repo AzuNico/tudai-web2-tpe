@@ -1,7 +1,9 @@
 <?php
-class PetView {
+class PetView
+{
 
-    public function showOptions($options) {
+    public function showOptions($options)
+    {
         $count = count($options);
 
         // NOTA: el template va a poder acceder a todas las variables y constantes que tienen alcance en esta funcion
@@ -10,29 +12,47 @@ class PetView {
         require 'templates/listOptions.phtml';
     }
 
-    public function showError($error) {
+    public function showError($error)
+    {
         require 'templates/error.phtml';
     }
 
 
-    public function showPets($pets,$owners){
+    public function showPets($pets, $owners)
+    {
         require 'templates/pets.phtml';
     }
 
-    public function showOwners($owners){
+    public function showOwners($owners)
+    {
         require 'templates/owners.phtml';
     }
 
-    public function showOwnersAndPets($pets,$owners){
+    public function showOwnersAndPets($pets, $owners)
+    {
         require 'templates/pets.phtml';
         require 'templates/owners.phtml';
     }
 
-    public function showSpecificOwner($owner){
+    public function showSpecificOwner($owner)
+    {
         require 'templates/specificOwner.phtml';
     }
 
-    public function showSpecificPet($pet,$owner){
+    public function showSpecificPet($pet, $owner)
+    {
         require 'templates/specificPet.phtml';
+    }
+
+    public function showEditPet($item, $owners)
+    {
+        $itemType = 'pet';
+        require 'templates/formCreateEdit.phtml';
+    }
+
+    public function showCreatePet($owners)
+    {
+        $itemType = 'pet';
+        require 'templates/formCreateEdit.phtml';
     }
 }
