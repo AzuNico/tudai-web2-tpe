@@ -1,5 +1,5 @@
 <?php
-require './app/models/owner.model.php';
+require_once './app/models/owner.model.php';
 require_once './app/views/owner.view.php';
 class OwnerController {
     private $model;
