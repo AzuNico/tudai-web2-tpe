@@ -1,7 +1,7 @@
 <?php
 require_once './app/models/model.php';
 require_once './app/views/view.php';
-class Controller {
+class HomeController {
     private $model;
     private $ownerModel;
     private $view;
