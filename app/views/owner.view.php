@@ -2,7 +2,7 @@
 class OwnerView {
 
     public function showOptions($options) {
-        require 'templates/listOptions.phtml';
+        require 'templates/home.phtml';
     }
 
     public function showError($error) {
