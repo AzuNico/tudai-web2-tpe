@@ -3,21 +3,25 @@ require_once './app/models/user.model.php';
 require_once './app/views/auth.view.php';
 require_once './app/helpers/auth.helper.php';
 
-class AuthController {
+class AuthController
+{
     private $model;
     private $view;
 
-    public function __construct() {
-        $this->model = new UserModel();
+    public function __construct()
+    {
+        $this->model = new UsersModel();
         $this->view = new AuthView();
     }
 
-    public function showLogin() {
+    public function showLogin()
+    {
         $this->view->showLogin();
     }
 
-    
-    public function auth() {
+
+    public function auth()
+    {
         $user = $_POST['user'];
         $password = $_POST['password'];
 
@@ -30,19 +34,19 @@ class AuthController {
         $user = $this->model->getByUser($user);
         if ($user && password_verify($password, $user->PASSWORD)) {
             // ACA LO AUTENTIQUE
-            
+
             AuthHelper::login($user);
 
             header('Location: options');
-            
         } else {
             $this->view->showLogin('Inicio de sesión incorrecto!');
         }
     }
-/*
-    public function logout() {
+
+
+    public function logout()
+    {
         AuthHelper::logout();
-        header('Location: ' . BASE_URL);    
+        header('Location: ' . BASE_URL);
     }
-*/
 }

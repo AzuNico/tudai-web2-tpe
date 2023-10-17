@@ -1,6 +1,8 @@
 <?php
 require_once './app/controllers/controller.php';
 require_once './app/controllers/auth.controller.php';
+// require_once './app/controllers/owner.controller.php';
+// require_once './app/controllers/pet.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 

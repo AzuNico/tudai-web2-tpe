@@ -26,4 +26,9 @@ class AuthHelper {
             die();
         }
     }
+
+    public static function isLogged() {
+        AuthHelper::init();
+        return isset($_SESSION['USER_ID']);
+    }
 }

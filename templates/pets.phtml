@@ -1,7 +1,5 @@
-<?php require_once 'templates/buttonHome.phtml' ?>
 <?php require_once 'templates/header.phtml' ?>
-
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<?php require_once 'templates/navbar.phtml' ?>
 
 <table class="table">
     <h2>Mascotas: </h2>
@@ -23,7 +21,12 @@
         <td><?= $pet->EDAD ?></td>
         <td><?= $pet->ID_DUENIO ?></td>
         <td><?= $ownerid->NOMBRE ?></td>
-        <td><a href="../pet/<?= $pet->ID?>"> Ver en detalle</a></td>
+        <td><a href="../pet/<?= $pet->ID?>"> Ver</a></td>
+         <!-- si esta logueado puede eliminar o editar item -->
+         <?php if(AuthHelper::isLogged()): ?>
+            <td><a href="../pet-edit/<?= $pet->ID?>"> Editar</a></td>
+            <td><a href="../pet-delete/<?= $pet->ID?>"> Eliminar</a></td>
+        <?php endif ?>
     </tr>
 
 <?php endforeach ?>

@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `libretamascotas`
 --
+CREATE DATABASE IF NOT EXISTS `libretamascotas` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `libretamascotas`;
 
 -- --------------------------------------------------------
 

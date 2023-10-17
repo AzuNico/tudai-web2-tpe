@@ -1,7 +1,5 @@
-<?php require_once 'templates/buttonHome.phtml' ?>
 <?php require_once 'templates/header.phtml' ?>
-
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<?php require_once 'templates/navbar.phtml' ?>
 
 <table class="table">
     <h2>Dueños:</h2>
@@ -19,7 +17,12 @@
         <td><?= $owner->ID ?></td>
         <td><?= $owner->NOMBRE ?></td>
         <td><?= $owner->MAIL ?> </td>
-        <td><a href="../owner/<?= $owner->ID?>"> Ver en detalle</a></td>
+        <td><a href="../owner/<?= $owner->ID?>"> Ver</a></td>
+        <!-- si esta logueado puede eliminar o editar item -->
+        <?php if(AuthHelper::isLogged()): ?>
+            <td><a href="../owner-delete/<?= $owner->ID?>"> Eliminar</a></td>
+            <td><a href="../owner-edit/<?= $owner->ID?>"> Editar</a></td>
+        <?php endif ?>
     </tr>
 
 <?php endforeach ?>
