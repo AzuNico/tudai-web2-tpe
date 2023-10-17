@@ -20,8 +20,8 @@
         <td><a href="../owner/<?= $owner->ID?>"> Ver</a></td>
         <!-- si esta logueado puede eliminar o editar item -->
         <?php if(AuthHelper::isLogged()): ?>
-            <td><a href="../owner-delete/<?= $owner->ID?>"> Eliminar</a></td>
             <td><a href="../owner-edit/<?= $owner->ID?>"> Editar</a></td>
+            <td><a href="../owner-delete/<?= $owner->ID?>"> Eliminar</a></td>
         <?php endif ?>
     </tr>
 

@@ -78,6 +78,7 @@ switch ($params[0]) {
         $controller->showCreatePet();
         break;
     case 'create-pet':
+        // echo "create-pet";
         $controller = new PetController();
         $controller->createPet();
         break;
@@ -97,6 +98,49 @@ switch ($params[0]) {
             echo 'Especifique la id de la mascota';
         }
         break;
+    case 'pet-delete':
+        if ($params[1] != null) {
+            $controller = new PetController();
+            $controller->deletePet($params[1]);
+        } else {
+            echo 'Especifique la id de la mascota';
+        }
+        break;
+    case 'add-owner':
+        $controller = new OwnerController();
+        $controller->showCreateOwner();
+        break;
+    case 'create-owner':
+        $controller = new OwnerController();
+        $controller->createOwner();
+        break;
+    case 'owner-edit':
+        if ($params[1] != null) {
+            $controller = new OwnerController();
+            $controller->showEditOwner($params[1]);
+        } else {
+            echo 'Especifique la id del dueño';
+        }
+        break;
+    case 'update-owner':
+        if ($params[1] != null) {
+            $controller = new OwnerController();
+            $controller->editOwner($params[1]);
+        } else {
+            echo 'Especifique la id del dueño';
+        }
+        break;
+    case 'owner-delete':
+        if ($params[1] != null) {
+            $controller = new OwnerController();
+            $controller->deleteOwner($params[1]);
+        } else {
+            echo 'Especifique la id del dueño';
+        }
+        break;
+
+
+
     default:
         echo "404 Page Not Found";
         break;

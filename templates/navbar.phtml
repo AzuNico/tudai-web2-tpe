@@ -9,12 +9,12 @@
     <!-- si estoy parado en list-pets entonces muestro botón crear  -->
     <?php if (AuthHelper::isLogged() && strpos($_SERVER['REQUEST_URI'], 'list-pets')) { ?>
         <div>
-            <a href="../add-pet">Crear Mascota</a>
+            <a href="../add-pet/">Crear Mascota</a>
         </div>
     <?php } ?>
     <?php if (AuthHelper::isLogged() && strpos($_SERVER['REQUEST_URI'], 'list-owners')) { ?>
         <div>
-            <a href="../add-owner">Crear Dueño</a>
+            <a href="../add-owner/">Crear Dueño</a>
         </div>
     <?php } ?>
     <div>

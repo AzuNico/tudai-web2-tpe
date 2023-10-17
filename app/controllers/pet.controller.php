@@ -64,5 +64,11 @@ class PetController {
         $this->petModel->editPet($idpet,$name, $age, $weight, $type, $idowner);
         header("Location: ".BASE_URL."/list-pets");
     }
+
+    //funcion para eliminar una pet
+    public function deletePet($idpet){
+        $this->petModel->deletePet($idpet);
+        header("Location: ".BASE_URL."/list-pets");
+    }
       
 }
