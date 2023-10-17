@@ -22,10 +22,8 @@ class PetView
         require 'templates/owners.phtml';
     }
 
-    public function showOwnersAndPets($pets, $owners)
-    {
-        require 'templates/pets.phtml';
-        require 'templates/owners.phtml';
+    public function showPetsByOwner($owner,$pets){
+        require 'templates/petsByOwner.phtml';
     }
 
     public function showSpecificOwner($owner)

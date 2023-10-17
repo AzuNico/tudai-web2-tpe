@@ -31,15 +31,6 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->auth();
         break;
-    /*
-    case 'list-items':
-        $controller = new PetController();
-        $controller->getAllPets();
-        break;
-    case 'list-categories':
-        $controller = new Controller();
-        $controller->listCategories();
-        break;*/
     case 'list-owners':
         $controller = new OwnerController();
         $controller->getAllOwners();
@@ -47,6 +38,22 @@ switch ($params[0]) {
     case 'list-pets':
         $controller = new PetController();
         $controller->getAllPets();
+        break;
+    case 'pets-by-owner':
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Verifica si se ha enviado el formulario
+            $idowner = $_POST['idowner'];
+            $currentUrl = $_SERVER['REQUEST_URI'];
+            header("Location: " . $_SERVER['REQUEST_URI'] . "$idowner");
+            exit;
+        }
+        else
+            if ($params[1] != null) {
+                $controller = new PetController();
+                $controller->getPetsByOwner($params[1]);
+            } else {
+                echo 'Especifique la id del dueño';
+            }
         break;
     case 'owner':
         if ($params[1] != null) {

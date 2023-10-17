@@ -3,6 +3,7 @@ require_once './app/models/model.php';
 require_once './app/views/view.php';
 class Controller {
     private $model;
+    private $ownerModel;
     private $view;
 
     public function __construct() {
@@ -10,6 +11,7 @@ class Controller {
         $this->checkLoggedIn();
 
         $this->model = new Model();
+        $this->ownerModel = new OwnerModel();
         $this->view = new View();
     }
 
@@ -29,15 +31,9 @@ class Controller {
                 'Listado de Dueños',
                 'Listado de Mascotas por Dueño',
             );
-        $this->view->showOptions($options);
+        $owners = $this->ownerModel->getOwners();
+        $this->view->showOptions($options,$owners);
     }
 
-    public function listOwnersAndPets() {
-        $data = $this->model->getAll();
-        $pets = $data['mascotas'];
-        $owners = $data['duenio'];
-    
-        $this->view->showOwnersAndPets($pets, $owners);
-    }
 
 }

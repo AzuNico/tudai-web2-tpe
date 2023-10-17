@@ -14,11 +14,6 @@ class OwnerView {
         require 'templates/owners.phtml';
     }
 
-    public function showOwnersAndPets($pets,$owners){
-        require 'templates/pets.phtml';
-        require 'templates/owners.phtml';
-    }
-
     public function showSpecificOwner($owner){
         require 'templates/specificOwner.phtml';
     }

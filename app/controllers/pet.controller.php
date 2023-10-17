@@ -26,6 +26,14 @@ class PetController {
         $owner = $this->ownerModel->getOwnerByID($idowner);
         $this->view->showSpecificPet($pet,$owner);
     }
+    
+    
+    public function getPetsByOwner($idOwner){
+        $pets = $this->petModel->getPetsByOwner($idOwner);
+        $owner = $this->ownerModel->getOwnerByID($idOwner);
+
+        $this->view->showPetsByOwner($owner,$pets);
+    }
 
     //------ ABM PETS ------ //
 

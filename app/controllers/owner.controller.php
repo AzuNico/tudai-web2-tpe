@@ -23,7 +23,7 @@ class OwnerController
         $owner = $this->model->getOwnerByID($idowner);
         $this->view->showSpecificOwner($owner);
     }
-
+    
 
     //------ ABM OWNERS ------ //
 

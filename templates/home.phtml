@@ -20,7 +20,15 @@
                     break;
                 case 'Listado de Mascotas por Dueño':
                     ?>
-                        <a href='list-categories/'><?= $option ?></a>
+                        <form action = "pets-by-owner/"<?php ?> method="POST">
+                            <label for="owner">Buscar mascotas del dueño:</label><br>
+                            <select name="idowner" id="owner">
+                                <?php foreach ($owners as $owner) : ?>
+                                    <option value="<?php echo $owner->ID; ?>"> <?php echo $owner->NOMBRE ?> </option>
+                                <?php endforeach; ?> 
+                            </select>
+                            <button type="submit"> Buscar </button>
+                        </form>
                     <?php
                     break;      
             }
