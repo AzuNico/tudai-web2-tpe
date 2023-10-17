@@ -31,34 +31,35 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->auth();
         break;
+    /*
     case 'list-items':
-        $controller = new Controller();
-        $controller->listItems();
+        $controller = new PetController();
+        $controller->getAllPets();
         break;
     case 'list-categories':
         $controller = new Controller();
         $controller->listCategories();
-        break;
+        break;*/
     case 'list-owners':
-        $controller = new Controller();
-        $controller->listOwners();
+        $controller = new OwnerController();
+        $controller->getAllOwners();
         break;
     case 'list-pets':
-        $controller = new Controller();
-        $controller->listPets();
+        $controller = new PetController();
+        $controller->getAllPets();
         break;
     case 'owner':
         if ($params[1] != null) {
-            $controller = new Controller();
-            $controller->specificOwner($params[1]);
+            $controller = new OwnerController();
+            $controller->getOwnerById($params[1]);
         } else {
             echo 'Especifique la id del dueño';
         }
         break;
     case 'pet':
         if ($params[1] != null) {
-            $controller = new Controller();
-            $controller->specificPet($params[1]);
+            $controller = new PetController();
+            $controller->getPetById($params[1]);
         } else {
             echo 'Especifique la id de la mascota';
         }

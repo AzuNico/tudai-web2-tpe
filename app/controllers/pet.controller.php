@@ -13,7 +13,7 @@ class PetController {
         $this->ownerModel = new OwnerModel();
         $this->view = new PetView();
     }
-        
+
     public function getAllPets(){
         $pets =$this->petModel->getPets();
         $owners = $this->ownerModel->getOwners();
