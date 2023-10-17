@@ -1,6 +1,6 @@
 <?php
-require_once './app/models/pet.model.php.php';
-require './app/models/owner.model.php.php';
+require_once './app/models/pet.model.php';
+require_once './app/models/owner.model.php';
 require_once './app/views/pet.view.php';
 class PetController {
     private $petModel;
