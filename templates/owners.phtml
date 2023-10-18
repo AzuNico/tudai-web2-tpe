@@ -1,0 +1,39 @@
+<?php require_once 'templates/header.phtml' ?>
+<?php require_once 'templates/navbar.phtml' ?>
+
+<?php if (empty($owners)) : ?>
+    <?php
+    $description = 'No hay dueños.';
+    require_once 'templates/emptyState.phtml'
+    ?>
+<?php else : ?>
+
+    <table class="table">
+        <h2>Dueños:</h2>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Mail</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php foreach ($owners as $owner) : ?>
+                <tr>
+                    <td><?= $owner->ID ?></td>
+                    <td><?= $owner->NOMBRE ?></td>
+                    <td><?= $owner->MAIL ?> </td>
+                    <td><a href="../owner/<?= $owner->ID ?>"> Ver</a></td>
+                    <!-- si esta logueado puede eliminar o editar item -->
+                    <?php if (AuthHelper::isLogged()) : ?>
+                        <td><a href="../owner-edit/<?= $owner->ID ?>"> Editar</a></td>
+                        <td><a href="../owner-delete/<?= $owner->ID ?>"> Eliminar</a></td>
+                    <?php endif ?>
+                </tr>
+
+            <?php endforeach ?>
+        </tbody>
+    </table>
+<?php endif ?>
+<?php require_once 'templates/footer.phtml' ?>
