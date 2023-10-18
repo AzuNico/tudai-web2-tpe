@@ -1,5 +1,10 @@
 <?php require_once 'templates/header.phtml' ?>
-<?php require_once 'templates/navbar.phtml' ?>
+
+<?php if (AuthHelper::isLogged()) : ?>
+    <div class="fl-s">
+        <a href="add-owner" class="btn btn-primary">Crear Dueño</a>
+    </div>
+<?php endif ?>
 
 <?php if (empty($owners)) : ?>
     <?php

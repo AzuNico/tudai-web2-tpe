@@ -1,5 +1,4 @@
 <?php require_once 'templates/header.phtml' ?>
-<?php require_once 'templates/navbar.phtml' ?>
 <?php if (empty($pets)) : ?>
     <?php
     $description = 'No hay mascotas.';
@@ -38,5 +37,4 @@
         </tbody>
     </table>
 <?php endif ?>
-
-<!-- si pongo el footer el owners que se agrega despues queda afuera. require 'templates/footer.phtml'  -->
+<?php require_once 'templates/footer.phtml' ?>
