@@ -1,7 +1,7 @@
 <?php require_once './app/helpers/auth.helper.php' ?>
 <nav>
     <div>
-        <a href='../options'> Inicio </a>
+        <a href='../home'> Inicio </a>
     </div>
     <div>
         <a href="javascript:history.back()">Volver a la página anterior</a>
@@ -19,7 +19,10 @@
     <?php } ?>
     <div>
         <?php if (AuthHelper::isLogged()) { ?>
-            <a href="../logout">Logout</a>
+            <?php
+                $username = $_SESSION['USERNAME'];
+                ?>
+                <a href="../logout">Logout (<?= $username; ?>)</a>
         <?php } else { ?>
             <a href="../login">Login</a>
         <?php } ?>

@@ -1,22 +1,22 @@
 <?php
-require_once './app/controllers/controller.php';
+require_once './app/controllers/home.controller.php';
 require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/owner.controller.php';
 require_once './app/controllers/pet.controller.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
-$action = 'options'; // accion por defecto
+$action = 'home'; // accion por defecto
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
 
-// parsea la accion para separar accion real de parametros
+
 $params = explode('/', $action);
 
 switch ($params[0]) {
-    case 'options':
-        $controller = new Controller();
+    case 'home':
+        $controller = new HomeController();
         $controller->showOptions();
         break;
     case 'login':
@@ -31,34 +31,42 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->auth();
         break;
-    case 'list-items':
-        $controller = new Controller();
-        $controller->listItems();
-        break;
-    case 'list-categories':
-        $controller = new Controller();
-        $controller->listCategories();
-        break;
     case 'list-owners':
-        $controller = new Controller();
-        $controller->listOwners();
+        $controller = new OwnerController();
+        $controller->getAllOwners();
         break;
     case 'list-pets':
-        $controller = new Controller();
-        $controller->listPets();
+        $controller = new PetController();
+        $controller->getAllPets();
+        break;
+    case 'pets-by-owner':
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Verifica si se ha enviado el formulario
+            $idowner = $_POST['idowner'];
+            $currentUrl = $_SERVER['REQUEST_URI'];
+            header("Location: " . $_SERVER['REQUEST_URI'] . "$idowner");
+            exit;
+        }
+        else
+            if ($params[1] != null) {
+                $controller = new PetController();
+                $controller->getPetsByOwner($params[1]);
+            } else {
+                echo 'Especifique la id del dueño';
+            }
         break;
     case 'owner':
         if ($params[1] != null) {
-            $controller = new Controller();
-            $controller->specificOwner($params[1]);
+            $controller = new OwnerController();
+            $controller->getOwnerById($params[1]);
         } else {
             echo 'Especifique la id del dueño';
         }
         break;
     case 'pet':
         if ($params[1] != null) {
-            $controller = new Controller();
-            $controller->specificPet($params[1]);
+            $controller = new PetController();
+            $controller->getPetById($params[1]);
         } else {
             echo 'Especifique la id de la mascota';
         }

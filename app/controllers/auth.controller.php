@@ -37,7 +37,7 @@ class AuthController
 
             AuthHelper::login($user);
 
-            header('Location: options');
+            header('Location: home');
         } else {
             $this->view->showLogin('Inicio de sesión incorrecto!');
         }

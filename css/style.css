@@ -78,3 +78,24 @@ nav a {
     border: black 2px solid;
     border-right: none;
 }
+
+.empty-state {
+    padding: 30px;
+}
+
+.empty-state__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.empty-state__description {
+    text-align: center;
+    font-size: medium;
+    margin: 20px;
+}
+
+.empty-state__action {
+    text-align: center;
+    margin-top: 10px;
+}

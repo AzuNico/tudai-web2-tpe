@@ -22,6 +22,12 @@ class PetModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getPetsByOwner($idOwner){
+        $query = $this->db->prepare('SELECT * FROM `mascotas` WHERE ID_DUENIO = ?');
+        $query->execute([$idOwner]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     //Esta funcion hace un alta de una mascota la tabla mascotas tiene columnas ID, NOMBRE, EDAD ,PESO ,TIPO,ID_DUENIO
     public function insertPet($name, $age, $weight, $type, $idowner){
         $query = $this->db->prepare('INSERT INTO `mascotas`(`NOMBRE`, `EDAD`, `PESO`, `TIPO`, `ID_DUENIO`) VALUES (?,?,?,?,?)');
