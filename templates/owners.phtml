@@ -29,7 +29,7 @@
                     <td><?= $owner->ID ?></td>
                     <td><?= $owner->NOMBRE ?></td>
                     <td><?= $owner->MAIL ?> </td>
-                    <td><a href="../owner/<?= $owner->ID ?>"> Ver</a></td>
+                    <td><a href="owner/<?= $owner->ID ?>"> Ver</a></td>
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
                         <td><a href="../owner-edit/<?= $owner->ID ?>"> Editar</a></td>
