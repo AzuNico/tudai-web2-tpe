@@ -17,9 +17,14 @@
     <!-- Inicio Main Container -->
     <div class="container">
         <div class="buttons-panel">
-            <?php if (AuthHelper::isLogged()) : ?>
+            <?php if (AuthHelper::isLogged() && $current_page == 'list-pets') : ?>
                 <div class="fl-s">
-                    <a href="<?= BASE_URL ?>add-pet" class="btn btn-primary">Crear Mascota</a>
+                    <a href="<?= BASE_URL ?>add-pet" class="btn btn-primary">Agregar Mascota</a>
+                </div>
+            <?php endif ?>
+            <?php if (AuthHelper::isLogged() && $current_page == 'list-owners') : ?>
+                <div class="fl-s">
+                    <a href="<?= BASE_URL ?>add-owner" class="btn btn-primary">Agregar Dueño</a>
                 </div>
             <?php endif ?>
             <!-- <div class="go-back">

@@ -1,11 +1,5 @@
 <?php require_once 'templates/header.phtml' ?>
 
-<?php if (AuthHelper::isLogged()) : ?>
-    <div class="fl-s">
-        <a href="<?= BASE_URL ?>add-owner" class="btn btn-primary">Crear Dueño</a>
-    </div>
-<?php endif ?>
-
 <?php if (empty($owners)) : ?>
     <?php
     $description = 'No hay dueños.';
