@@ -13,23 +13,33 @@
                 <th>Años</th>
                 <th>ID Dueño</th>
                 <th>Nombre del dueño</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($pets as $pet) :
-                $petowner = $pet->ID_DUENIO - 1;
-                $ownerid = $owners[$petowner];
+                $ownerid = $pet->ID_DUENIO;
+                $ownerName = "No tiene dueño";
+                foreach ($owners as $owner) {
+                    if ($owner->ID == $ownerid) {
+                        $ownerName = $owner->NOMBRE;
+                    }
+                }                
+              
+                
             ?>
                 <tr>
                     <td><?= $pet->NOMBRE ?></td>
                     <td><?= $pet->EDAD ?></td>
                     <td><?= $pet->ID_DUENIO ?></td>
-                    <td><?= $ownerid->NOMBRE ?></td>
-                    <td><a href="../pet/<?= $pet->ID ?>"> Ver</a></td>
+                    <td><?= $ownerName ?></td>
+                    <td><a href="<?= BASE_URL ?>pet/<?= $pet->ID ?>"> Ver</a></td>
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
-                        <td><a href="../pet-edit/<?= $pet->ID ?>"> Editar</a></td>
-                        <td><a href="../pet-delete/<?= $pet->ID ?>"> Eliminar</a></td>
+                        <td><a href="<?= BASE_URL ?>pet-edit/<?= $pet->ID ?>"> Editar</a></td>
+                        <td><a href="<?= BASE_URL ?>pet-delete/<?= $pet->ID ?>"> Eliminar</a></td>
                     <?php endif ?>
                 </tr>
 

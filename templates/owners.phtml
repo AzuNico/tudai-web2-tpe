@@ -2,7 +2,7 @@
 
 <?php if (AuthHelper::isLogged()) : ?>
     <div class="fl-s">
-        <a href="add-owner" class="btn btn-primary">Crear Dueño</a>
+        <a href="<?= BASE_URL ?>add-owner" class="btn btn-primary">Crear Dueño</a>
     </div>
 <?php endif ?>
 
@@ -29,16 +29,37 @@
                     <td><?= $owner->ID ?></td>
                     <td><?= $owner->NOMBRE ?></td>
                     <td><?= $owner->MAIL ?> </td>
-                    <td><a href="owner/<?= $owner->ID ?>"> Ver</a></td>
+                    <td><a href="<?= BASE_URL ?>owner/<?= $owner->ID ?>"> Ver</a></td>
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
-                        <td><a href="../owner-edit/<?= $owner->ID ?>"> Editar</a></td>
-                        <td><a href="../owner-delete/<?= $owner->ID ?>"> Eliminar</a></td>
+                        <td><a href="<?= BASE_URL ?>owner-edit/<?= $owner->ID ?>"> Editar</a></td>
+                        <td><a href="<?= BASE_URL ?>owner-delete/<?= $owner->ID ?>"> Eliminar</a></td>
                     <?php endif ?>
                 </tr>
 
             <?php endforeach ?>
         </tbody>
     </table>
+    <script>
+        function eliminarElemento(id) {
+            // Mostrar SweetAlert de confirmación
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción no se puede deshacer.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Aquí puedes realizar la lógica para eliminar el elemento con el ID proporcionado
+                    // Puedes hacer una petición AJAX o redirigir a una página de PHP para manejar la eliminación.
+
+                    // Ejemplo de redirección (ajusta según tus necesidades)
+                    window.location.href = "<?= BASE_URL ?>pet-delete/" + id;
+                }
+            });
+        }
+    </script>
 <?php endif ?>
 <?php require_once 'templates/footer.phtml' ?>
