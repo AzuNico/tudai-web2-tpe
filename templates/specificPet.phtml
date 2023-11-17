@@ -1,12 +1,13 @@
 <?php require_once 'templates/header.phtml' ?>
-<?php require_once 'templates/navbar.phtml' ?>
 
+<div class="go-back">
+    <a href="javascript:history.back()" class="btn btn-outline-primary">Volver a la página anterior</a>
+</div>
 <table class="table">
-    <h2>Mascota con id <?= $pet->ID ?> :</h2>
+    <h2> <?= $pet->NOMBRE ?></h2>
     <thead>
         <tr>
             <th>Id</th>
-            <th>Nombre</th>
             <th>Edad</th>
             <th>Peso</th>
             <th>Tipo</th>
@@ -15,18 +16,17 @@
         </tr>
     </thead>
     <tbody>
-        
-    <tr>
-        <td><?= $pet->ID ?></td>
-        <td><?= $pet->NOMBRE ?></td>
-        <td><?= $pet->EDAD ?> </td>
-        <td><?= $pet->PESO ?> </td>
-        <td><?= $pet->TIPO ?> </td>
-        <td><?= $pet->ID_DUENIO ?> </td>
-        <td><?= $owner->NOMBRE ?></td>
-    </tr>
 
-    </tbody>    
+        <tr>
+            <td><?= $pet->ID ?></td>
+            <td><?= $pet->EDAD ?> </td>
+            <td><?= $pet->PESO ?> </td>
+            <td><?= $pet->TIPO ?> </td>
+            <td><?= $pet->ID_DUENIO ?> </td>
+            <td><?= $owner->NOMBRE ?></td>
+        </tr>
+
+    </tbody>
 </table>
 
 

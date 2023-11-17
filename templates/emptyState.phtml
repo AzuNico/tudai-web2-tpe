@@ -6,6 +6,22 @@
     <div class="text-center">
         <h2>Nada por aquí...</h2>
         <p class="empty-state__description"><?php echo $description ?></p>
-        <a href="home" class="btn btn-primary">Ir al inicio</a>
+        <?php if (AuthHelper::isLogged()) : ?>
+            <?php if ($type == 'pet') : ?>
+                <?php if (empty($owners)) : ?>
+                    <p class="empty-state__description">Para agregar una mascota, debes tener dueños registrados</p>
+                    <a href="<?= BASE_URL ?>add-owner" class="btn btn-primary">Agregar dueño</a>    
+                <?php else : ?>
+                    <a href="<?= BASE_URL ?>add-pet" class="btn btn-primary">Agregar mascota</a>
+                <?php endif ?>
+            <?php endif ?>
+            <?php if ($type == 'owner') : ?>
+                <a href="<?= BASE_URL ?>add-owner" class="btn btn-primary">Agregar dueño</a>
+            <?php endif ?>
+
+        <?php else : ?>
+            <a href="<?= BASE_URL ?>login" class="btn btn-primary">Iniciar sesión</a>
+            <a href="home" class="btn">Ir al inicio</a>
+        <?php endif ?>
     </div>
 </div>

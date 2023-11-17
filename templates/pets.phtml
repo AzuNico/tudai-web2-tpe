@@ -2,11 +2,12 @@
 <?php if (empty($pets)) : ?>
     <?php
     $description = 'No hay mascotas.';
+    $type = 'pet';
     require_once 'templates/emptyState.phtml'
     ?>
 <?php else : ?>
     <table class="table">
-        <h2>Mascotas: </h2>
+        <h2>Mascotas</h2>
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -26,25 +27,84 @@
                     if ($owner->ID == $ownerid) {
                         $ownerName = $owner->NOMBRE;
                     }
-                }                
-              
-                
+                }
+
+
             ?>
                 <tr>
                     <td><?= $pet->NOMBRE ?></td>
                     <td><?= $pet->EDAD ?></td>
                     <td><?= $pet->ID_DUENIO ?></td>
                     <td><?= $ownerName ?></td>
-                    <td><a href="<?= BASE_URL ?>pet/<?= $pet->ID ?>"> Ver</a></td>
+                    <td><a href="<?= BASE_URL ?>pet/<?= $pet->ID ?>" class="btn btn-info"> Ver</a></td>
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
-                        <td><a href="<?= BASE_URL ?>pet-edit/<?= $pet->ID ?>"> Editar</a></td>
-                        <td><a href="<?= BASE_URL ?>pet-delete/<?= $pet->ID ?>"> Eliminar</a></td>
+                        <td><a href="<?= BASE_URL ?>pet-edit/<?= $pet->ID ?>" class="btn btn-primary"> Editar</a></td>
+                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $pet->ID ?>"> Eliminar</a></td>
                     <?php endif ?>
                 </tr>
 
             <?php endforeach ?>
         </tbody>
     </table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var eliminarLinks = document.querySelectorAll('.eliminar-item');
+
+            eliminarLinks.forEach(function(enlace) {
+                enlace.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var itemId = enlace.getAttribute('data-item-id');
+
+
+                    Swal.fire({
+                        title: '¿Estás seguro de que quieres eliminar a  <?= $pet->NOMBRE ?> :( ?',
+                        text: "¡No podrás revertir esto!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Si, eliminar!',
+                        cancelButtonText: 'Cancelar'
+                    }).then(async (result) => {
+                        console.log(result);
+                        if (result.isConfirmed) {
+                            try {
+                                const response = await fetch('<?= BASE_URL ?>pet-delete/' + itemId);
+                                const data = await response.json();
+                                if (data.status == 200) {
+                                    Swal.fire(
+                                        'Eliminado!',
+                                        'La mascota se eliminó correctamente.',
+                                        'success'
+                                    ).then((result) => {
+                                        window.location.href = '<?= BASE_URL ?>list-pets';
+                                    })
+                                    return;
+                                }
+
+                                if (data.status == 404) {
+                                    Swal.fire(
+                                        'No se puede eliminar!',
+                                        'La mascota no existe.',
+                                        'error'
+                                    ).then((result) => {
+                                        window.location.href = '<?= BASE_URL ?>list-pets';
+                                    })
+                                    return;
+                                }
+
+                            } catch (error) {
+                                console.log(error);
+                            }
+
+
+                        }
+                    })
+
+                });
+            });
+        });
+    </script>
 <?php endif ?>
 <?php require_once 'templates/footer.phtml' ?>

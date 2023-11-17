@@ -2,6 +2,7 @@
 require_once './app/models/owner.model.php';
 require_once './app/views/owner.view.php';
 require_once './app/helpers/auth.helper.php';
+require_once './app/models/pet.model.php';
 class OwnerController
 {
     private $model;
@@ -9,11 +10,14 @@ class OwnerController
 
     private $auth;
 
+    private $petModel;
+
     public function __construct()
     {
         $this->model = new OwnerModel();
         $this->view = new OwnerView();
         $this->auth = new AuthHelper();
+        $this->petModel = new PetModel();
     }
 
     public function getAllOwners()
@@ -25,7 +29,8 @@ class OwnerController
     public function getOwnerById($idowner)
     {
         $owner = $this->model->getOwnerByID($idowner);
-        $this->view->showSpecificOwner($owner);
+        $pets = $this->petModel->getPetsByOwner($idowner);
+        $this->view->showSpecificOwner($owner, $pets);
     }
 
 
@@ -46,7 +51,7 @@ class OwnerController
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $this->model->insertOwner($name, $email, $phone);
-        header("Location: " . BASE_URL . "/list-owners");
+        header("Location: " . BASE_URL . "list-owners");
     }
 
     //funcion para mostrar la edición de un owner
@@ -65,7 +70,7 @@ class OwnerController
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $this->model->editOwner($idowner, $name, $email, $phone);
-        header("Location: " . BASE_URL . "/list-owners");
+        header("Location: " . BASE_URL . "list-owners");
     }
 
     //funcion para eliminar un owner
@@ -73,6 +78,6 @@ class OwnerController
     {
         $this->auth->verify();
         $this->model->deleteOwner($idowner);
-        header("Location: " . BASE_URL . "/list-owners");
+        // header("Location: " . BASE_URL . "list-owners");
     }
 }

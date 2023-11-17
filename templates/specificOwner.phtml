@@ -1,26 +1,19 @@
 <?php require_once 'templates/header.phtml' ?>
-
-<table class="table">
-    <h2>Dueño con id <?= $owner->ID ?> :</h2>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Mail</th>
-            <th>Telefono</th>
-        </tr>
-    </thead>
-    <tbody>
-        
-    <tr>
-        <td><?= $owner->ID ?></td>
-        <td><?= $owner->NOMBRE ?></td>
-        <td><?= $owner->MAIL ?> </td>
-        <td> <?= $owner->TELEFONO ?> </td>
-    </tr>
-
-    </tbody>    
-</table>
-
+<div class="go-back">
+    <a href="javascript:history.back()" class="btn btn-outline-primary">Volver a la página anterior</a>
+</div>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h3 class="card-title"><?= $owner->NOMBRE ?></h3>
+        <h6 class="card-subtitle mb-2 text-muted"><?= $owner->MAIL ?></h6>
+        <p class="card-text"> <?= $owner->TELEFONO ?></p>
+        <!-- <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a> -->
+    </div>
+</div>
+<div style="margin-top: 50px;">
+    <h5>Mascotas </h5>
+    <?php require 'templates/petsByOwner.phtml' ?>
+</div>
 
 <?php require 'templates/footer.phtml' ?>
