@@ -16,7 +16,7 @@
     <!-- Inicio Main Container -->
     <div class="container">
         <div class="buttons-panel">
-            <?php if (AuthHelper::isLogged() && $current_page == 'list-pets' || '/' . $current_page == dirname($_SERVER['PHP_SELF']) && !empty($pets)) : ?>
+            <?php if (AuthHelper::isLogged() && (str_contains($current_page, 'pet') || '/' . $current_page == dirname($_SERVER['PHP_SELF'])) && !empty($pets)) : ?>
                 <div class="fl-s">
                     <a href="<?= BASE_URL ?>add-pet" class="btn btn-primary">Agregar Mascota</a>
                 </div>
