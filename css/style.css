@@ -1,4 +1,4 @@
-.header {
+/* .header {
     margin: 5px;
     margin-left: 37%;
     border: black 2px solid;
@@ -98,4 +98,18 @@ nav a {
 .empty-state__action {
     text-align: center;
     margin-top: 10px;
+}
+*/
+
+.buttons-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.go-back {
+  display: flex;
+  justify-content: flex-end;
 }

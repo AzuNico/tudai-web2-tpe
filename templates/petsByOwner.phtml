@@ -1,13 +1,10 @@
-<?php require_once 'templates/header.phtml' ?>
-<?php require_once 'templates/navbar.phtml' ?>
-
 <table class="table">
-    <h2>Mascotas de <?= $owner->NOMBRE ?> :</h2>
+    <!-- <h2>Mascotas de <?= $owner->NOMBRE ?> :</h2> -->
     <?php if (empty($pets)) : ?>
-        <?php 
+        <?php
         $description = 'No hay mascotas para este dueño.';
         require_once 'templates/emptyState.phtml'
-         ?>
+        ?>
     <?php else : ?>
         <thead>
             <tr>
@@ -26,7 +23,7 @@
                     <td><?= $pet->EDAD ?></td>
                     <td><?= $pet->PESO ?></td>
                     <td><?= $pet->TIPO ?></td>
-                    <td><a href="../pet/<?= $pet->ID ?>"> Ver en detalle</a></td>
+                    <td><a href="<?= BASE_URL ?>pet/<?= $pet->ID ?>"> Ver en detalle</a></td>
                 </tr>
 
             <?php endforeach ?>
@@ -34,4 +31,3 @@
         </tbody>
 </table>
 <?php endif ?>
-<?php require 'templates/footer.phtml' ?>

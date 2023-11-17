@@ -3,14 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
+    <base href="<?= BASE_URL ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/style.css">
     <title>Veterinaria</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
 <body>
-    <div class="header">
-        <h1 class="header-titulo"> Veterinaria</h1>
-    </div>
+    <?php require 'templates/newnavbar.phtml' ?>
     <!-- Inicio Main Container -->
-    <div class="main-container">
+    <div class="container">
+        <div class="buttons-panel">
+            <?php if (AuthHelper::isLogged() && (str_contains($current_page, 'pet') || '/' . $current_page == dirname($_SERVER['PHP_SELF'])) && !empty($pets)) : ?>
+                <div class="fl-s">
+                    <a href="<?= BASE_URL ?>add-pet" class="btn btn-primary">Agregar Mascota</a>
+                </div>
+            <?php endif ?>
+            <?php if (AuthHelper::isLogged() && $current_page == 'list-owners' && !empty($owners)) : ?>
+                <div class="fl-s">
+                    <a href="<?= BASE_URL ?>add-owner" class="btn btn-primary">Agregar Dueño</a>
+                </div>
+            <?php endif ?>
+        </div>
