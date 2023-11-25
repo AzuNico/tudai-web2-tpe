@@ -1,5 +1,6 @@
 <?php
-class OwnerView
+require_once 'app/views/view.php';
+class OwnerView extends View
 {
 
     public function showOptions($options)

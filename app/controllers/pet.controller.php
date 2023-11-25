@@ -28,10 +28,18 @@ class PetController
 
     public function getPetById($idpet)
     {
-        $pet = $this->petModel->getPetByID($idpet);
-        $idowner = $pet->ID_DUENIO;
-        $owner = $this->ownerModel->getOwnerByID($idowner);
-        $this->view->showSpecificPet($pet, $owner);
+        try {
+            $pet = $this->petModel->getPetByID($idpet);
+            if (empty($pet)) {
+                $this->view->showError404();
+                exit;
+            }
+            $idowner = $pet->ID_DUENIO;
+            $owner = $this->ownerModel->getOwnerByID($idowner);
+            $this->view->showSpecificPet($pet, $owner);
+        } catch (\Throwable $th) {
+            $this->view->showError500();
+        }
     }
 
 

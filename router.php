@@ -1,5 +1,4 @@
 <?php
-require_once './app/controllers/home.controller.php';
 require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/owner.controller.php';
 require_once './app/controllers/pet.controller.php';
@@ -17,10 +16,6 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 switch ($params[0]) {
-    // case 'home':
-    //     $controller = new HomeController();
-    //     $controller->showOptions();
-    //     break;
     case 'login':
         $controller = new AuthController();
         $controller->showLogin();

@@ -1,13 +1,12 @@
 <?php
 class View {
-
-    public function showOptions($options,$owners) {
-        require 'templates/home.phtml';
+    
+    public function showError404() {
+        require 'templates/404.phtml';
     }
 
-    /*
-    public function showError($error) {
-        require 'templates/error.phtml';
-    }*/
+    public function showError500() {
+        require 'templates/500.phtml';
+    }
 
 }
