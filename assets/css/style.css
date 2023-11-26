@@ -1,0 +1,48 @@
+.buttons-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.go-back {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.errorHTTP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.errorHTTP h1 {
+  font-size: 100px;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.errorHTTP h2 {
+  font-size: 50px;
+  margin-top: 0;
+  color: brown;
+}
+
+.errorHTTP p {
+  font-size: 30px;
+  margin-top: 0;
+}
+
+.errorHTTP a {
+  margin-top: 30px;
+}
+
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

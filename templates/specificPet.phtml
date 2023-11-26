@@ -9,9 +9,8 @@
         <tr>
             <th>Id</th>
             <th>Edad</th>
-            <th>Peso</th>
+            <th>Peso (kg)</th>
             <th>Tipo</th>
-            <th>Id del dueño</th>
             <th>Nombre del dueño</th>
         </tr>
     </thead>
@@ -21,9 +20,8 @@
             <td><?= $pet->ID ?></td>
             <td><?= $pet->EDAD ?> </td>
             <td><?= $pet->PESO ?> </td>
-            <td><?= $pet->TIPO ?> </td>
-            <td><?= $pet->ID_DUENIO ?> </td>
-            <td><?= $owner->NOMBRE ?></td>
+            <td><span class="badge badge-pill badge-info"><?= $pet->TIPO ?></span> </td>
+            <td><span class="badge badge-pill badge-secondary"><?= $owner->NOMBRE ?></span></td>
         </tr>
 
     </tbody>

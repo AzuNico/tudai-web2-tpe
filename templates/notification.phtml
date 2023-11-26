@@ -1,0 +1,50 @@
+<style>
+    .notification {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 5rem;
+        padding: 1rem;
+        z-index: 1000;
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    .fade-out {
+        animation: fadeOut 1s ease-out 3s forwards;
+    }
+</style>
+
+<!-- variable que almacena en un arreglo asociativo un key estado y en un value el nombre del icono -->
+<?php
+$iconos = [
+    'success' => 'fas fa-check-circle',
+    'danger' => 'fas fa-exclamation-circle',
+    'warning' => 'fas fa-exclamation-triangle',
+    'info' => 'fas fa-info-circle'
+];
+
+
+// recupera el alert de la sesion
+// $alert = $_SESSION['alert'] ?? null;
+
+$icon = isset($alert['status']) && isset($iconos[$alert['status']]) ? $iconos[$alert['status']] : 'fas fa-info-circle';
+?>
+
+<?php if (isset($alert['status']) && isset($alert['message'])) : ?>
+
+    <!-- Alerta dinámica según el estado -->
+    <div class="notification alert fade-out <?php echo 'alert-' . $alert['status']; ?>" role="alert">
+        <i class="<?= $icon ?>"></i> <?php echo $alert['message']; ?>
+    </div>
+
+<?php endif; ?>

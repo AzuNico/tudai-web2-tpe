@@ -1,11 +1,24 @@
-<table class="table">
-    <!-- <h2>Mascotas de <?= $owner->NOMBRE ?> :</h2> -->
-    <?php if (empty($pets)) : ?>
+<?php if (empty($pets)) : ?>
+    <style>
+        .emptyTable {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* margin-top: 20px; */
+        }
+    </style>
+    <div class="emptyTable">
+        <img src="<?= BASE_URL ?>assets/img/emptyPet.png" alt="Empty state" width="350">
         <?php
-        $description = 'No hay mascotas para este dueño.';
+        $description = 'Aún no agregaste mascotas para este dueño.';
+        $type = 'pet';
+        $owners= $owner;
         require_once 'templates/emptyState.phtml'
         ?>
-    <?php else : ?>
+    </div>
+<?php else : ?>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,12 +35,12 @@
                     <td><?= $pet->NOMBRE ?></td>
                     <td><?= $pet->EDAD ?></td>
                     <td><?= $pet->PESO ?></td>
-                    <td><?= $pet->TIPO ?></td>
+                    <td><span class="badge badge-pill badge-info"><?= $pet->TIPO ?></span></td>
                     <td><a href="<?= BASE_URL ?>pet/<?= $pet->ID ?>"> Ver en detalle</a></td>
                 </tr>
 
             <?php endforeach ?>
 
         </tbody>
-</table>
+    </table>
 <?php endif ?>

@@ -4,7 +4,7 @@
 </div>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-        <h3 class="card-title"><?= $owner->NOMBRE ?></h3>
+        <h2 class="card-title"><?= $owner->NOMBRE ?></h2>
         <h6 class="card-subtitle mb-2 text-muted"><?= $owner->MAIL ?></h6>
         <p class="card-text"> <?= $owner->TELEFONO ?></p>
         <!-- <a href="#" class="card-link">Card link</a>
@@ -12,7 +12,8 @@
     </div>
 </div>
 <div style="margin-top: 50px;">
-    <h5>Mascotas </h5>
+    <h3>Mascotas </h3>
+    <hr/>
     <?php require 'templates/petsByOwner.phtml' ?>
 </div>
 

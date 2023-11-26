@@ -6,10 +6,10 @@
 
 <?php if ($itemType == 'pet') : ?>
 
-    <form action="<?php echo isset($item) ? BASE_URL . 'update-pet/' . $item->ID  : BASE_URL . 'create-pet'; ?>" method="post">
+    <form class="formSubmit" id="pet" action="<?php echo isset($item) ? BASE_URL . 'update-pet/' . $item->ID  : BASE_URL . 'create-pet'; ?>" method="post">
     <?php endif; ?>
     <?php if ($itemType == 'owner') : ?>
-        <form action="<?php echo isset($item) ? BASE_URL . 'update-owner/' . $item->ID  : BASE_URL . 'create-owner'; ?>" method="post">
+        <form class="formSubmit" id="owner" action="<?php echo isset($item) ? BASE_URL . 'update-owner/' . $item->ID  : BASE_URL . 'create-owner'; ?>" method="post">
         <?php endif; ?>
 
         <?php if (isset($item)) : ?>
@@ -29,7 +29,7 @@
             <label for="age">Edad:</label><br>
             <input class="form-control" type="text" id="age" name="age" value="<?php echo isset($item) ? $item->EDAD : ''; ?>"><br><br>
 
-            <label for="weight">Peso:</label><br>
+            <label for="weight">Peso (kg):</label><br>
             <input class="form-control" type="text" id="weight" name="weight" value="<?php echo isset($item) ? $item->PESO : ''; ?>"><br><br>
 
             <label for="type">Tipo:</label><br>
@@ -45,13 +45,11 @@
             <label for="owner">Dueño:</label><br>
             <select class="form-control" name="idowner" id="owner">
                 <?php foreach ($owners as $owner) : ?>
-                    <option value="<?php echo $owner->ID; ?>" <?php echo isset($item) && $item->ID_DUENIO == $owner->ID ? 'selected' : ''; ?>><?php echo $owner->NOMBRE; ?></option>
+                    <option value="<?php echo $owner->ID; ?>" <?php echo isset($item) && $item->ID_DUENIO == $owner->ID ? 'selected' : ''; ?>><?php echo $owner->NOMBRE .' '. '(' . $owner->MAIL . ')'; ?></option>
                 <?php endforeach; ?>
             <?php endif; ?>
             </select><br><br>
+            <button type="submit" onsubmit="formSubmit" class="btn btn-primary"><?php echo isset($item) ? 'Actualizar' : 'Crear'; ?> <?php echo $itemType == 'pet' ? 'Mascota' : 'Dueño'; ?></button>
 
-
-            <button type="submit" class="btn btn-primary"><?php echo isset($item) ? 'Actualizar' : 'Crear'; ?> <?php echo $itemType == 'pet' ? 'Mascota' : 'Dueño'; ?></button>
         </form>
-
         <?php require_once 'templates/footer.phtml' ?>

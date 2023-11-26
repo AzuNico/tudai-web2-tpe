@@ -18,11 +18,11 @@ class UsersModel
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-   //Esta funcion registra un usuario en la tabla usuarios, las passwords se hashean con BCRYPT
     public function registerUser($user, $password)
     {
         $query = $this->db->prepare('INSERT INTO usuarios (USER, PASSWORD) VALUES (?,?)');
         $query->execute([$user, password_hash($password, PASSWORD_BCRYPT)]);
+        return $this->db->lastInsertId();
     }
 
     //Esta funcion elimina un usuario de la tabla usuarios

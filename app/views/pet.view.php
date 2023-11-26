@@ -1,16 +1,7 @@
 <?php
-class PetView
+require_once 'app/views/view.php';
+class PetView extends View
 {
-
-    public function showOptions($options) {
-        require 'templates/home.phtml';
-    }
-
-    public function showError($error)
-    {
-        require 'templates/error.phtml';
-    }
-
 
     public function showPets($pets, $owners)
     {
@@ -22,7 +13,8 @@ class PetView
         require 'templates/owners.phtml';
     }
 
-    public function showPetsByOwner($owner,$pets){
+    public function showPetsByOwner($owner, $pets)
+    {
         require 'templates/petsByOwner.phtml';
     }
 

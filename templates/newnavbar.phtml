@@ -37,7 +37,7 @@ $homeDir = dirname($_SERVER['PHP_SELF'])
                     </div>
                 </div>
             <?php } else { ?>
-                <?php if ($current_page != 'login') { ?>
+                <?php if ($current_page != 'login' && $current_page != 'auth') { ?>
                     <a href="<?= BASE_URL ?>login" class="btn btn-primary">Login</a>
                 <?php } ?>
             <?php } ?>

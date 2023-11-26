@@ -1,11 +1,14 @@
 <?php require_once 'templates/header.phtml' ?>
 
 <?php if (empty($owners)) : ?>
-    <?php
-    $description = 'No hay dueños.';
-    $type = 'owner';
-    require_once 'templates/emptyState.phtml'
-    ?>
+    <div class="emptyContainer">
+        <img src="<?= BASE_URL ?>assets/img/ownerPetEmpty.png" alt="Empty state" width="350">
+        <?php
+        $description = 'No hay dueños registrados.';
+        $type = 'owner';
+        require_once 'templates/emptyState.phtml'
+        ?>
+    </div>
 <?php else : ?>
 
     <table class="table">
@@ -28,7 +31,7 @@
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
                         <td><a href="<?= BASE_URL ?>owner-edit/<?= $owner->ID ?>" class="btn btn-primary"> Editar</a></td>
-                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $owner->ID ?>" > Eliminar</a></td>
+                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $owner->ID ?>" data-item-name="<?= $owner->NOMBRE ?>"> Eliminar</a></td>
                     <?php endif ?>
                 </tr>
 
@@ -37,16 +40,17 @@
     </table>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var eliminarLinks = document.querySelectorAll('.eliminar-item');
+            const eliminarLinks = document.querySelectorAll('.eliminar-item');
 
             eliminarLinks.forEach(function(enlace) {
                 enlace.addEventListener('click', function(event) {
                     event.preventDefault();
-                    var itemId = enlace.getAttribute('data-item-id');
+                    const itemId = enlace.getAttribute('data-item-id');
+                    const itemName = enlace.getAttribute('data-item-name');
 
 
                     Swal.fire({
-                        title: '¿Estás seguro de que quieres eliminar a  <?= $owner->NOMBRE ?> ?',
+                        title: `¿Estás seguro de que quieres eliminar a  ${itemName} ?`,
                         text: "¡No podrás revertir esto!",
                         icon: 'warning',
                         showCancelButton: true,
@@ -55,7 +59,6 @@
                         confirmButtonText: 'Si, eliminar!',
                         cancelButtonText: 'Cancelar'
                     }).then(async (result) => {
-                        console.log(result);
                         if (result.isConfirmed) {
                             try {
                                 const response = await fetch('<?= BASE_URL ?>owner-delete/' + itemId);
@@ -67,7 +70,7 @@
                                         'success'
                                     ).then((result) => {
                                         window.location.href = '<?= BASE_URL ?>list-owners';
-                                    });                                
+                                    });
                                     return;
                                 }
                                 if (data.status == 403) {
