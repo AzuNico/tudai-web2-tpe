@@ -35,7 +35,7 @@ $iconos = [
 
 
 // recupera el alert de la sesion
-$alert = $_SESSION['alert'] ?? null;
+// $alert = $_SESSION['alert'] ?? null;
 
 $icon = isset($alert['status']) && isset($iconos[$alert['status']]) ? $iconos[$alert['status']] : 'fas fa-info-circle';
 ?>

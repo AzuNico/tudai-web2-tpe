@@ -4,6 +4,9 @@ require_once './app/controllers/owner.controller.php';
 require_once './app/controllers/pet.controller.php';
 require_once './app/models/owner.model.php';
 require_once './app/models/pet.model.php';
+require_once './app/views/owner.view.php';
+require_once './app/views/pet.view.php';
+require_once './app/views/view.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -77,45 +80,19 @@ switch ($params[0]) {
         $controller->createOwner();
         break;
     case 'owner-edit':
-        if ($params[1] != null) {
-            $controller = new OwnerController();
-            $controller->showEditOwner($params[1]);
-        } else {
-            echo 'Especifique la id del dueño';
-        }
+        $controller = new OwnerController();
+        $controller->showEditOwner($params[1]);
         break;
     case 'update-owner':
-        if ($params[1] != null) {
-            $controller = new OwnerController();
-            $controller->editOwner($params[1]);
-        } else {
-            echo 'Especifique la id del dueño';
-        }
+        $controller = new OwnerController();
+        $controller->editOwner($params[1]);
         break;
     case 'owner-delete':
-        if (isset($params[1])) {
-            $controller = new OwnerController();
-            $petModel = new PetModel();
-            $idowner = $params[1];
-            $pets = $petModel->getPetsByOwner($idowner);
-            if (empty($pets)) {
-                $controller->deleteOwner($params[1]);
-                $response = array("status" => 200, "msg" => "El dueño se eliminó correctamente.");
-                echo json_encode($response);
-                exit;
-            } else {
-                $response = array("status" => 403, "msg" => "No se puede eliminar el dueño porque tiene mascotas asociadas.");
-                echo json_encode($response);
-                exit;
-            }
-        } else {
-            echo 'Especifique la id del dueño';
-        }
+        $controller = new OwnerController();
+        $controller->deleteOwner($params[1]);
         break;
-
-
-
     default:
-        echo "404 Page Not Found";
+        $view = new View();
+        $view->showError404();
         break;
 }

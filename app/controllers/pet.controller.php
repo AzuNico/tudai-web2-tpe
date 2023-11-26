@@ -119,6 +119,7 @@ class PetController
             }
 
             $notification = $this->notification->setSuccess("Mascota creada con éxito");
+            $notification['url'] = BASE_URL . 'list-pets';
             echo json_encode($notification);
             exit;
             // header("Location: " . BASE_URL . "list-pets");
@@ -176,6 +177,7 @@ class PetController
 
             $this->petModel->editPet($idpet, $name, $age, $weight, $type, $idowner);
             $notification = $this->notification->setSuccess("Mascota editada con éxito");
+            $notification['url'] = BASE_URL . 'list-pets';
             echo json_encode($notification);
         } catch (\Throwable $th) {
             //throw $th;
@@ -186,17 +188,6 @@ class PetController
     //funcion para eliminar una pet
     public function deletePet($idpet)
     {
-
-        // if ($params[1] != null) {
-        //     $response = array("status" => 200, "msg" => "La mascota se eliminó correctamente.");
-        //     echo json_encode($response);
-        // } else {
-        //     $response = array("status" => 404, "msg" => "No se pudo eliminar la mascota.");
-        //     echo json_encode($response);
-        // }
-
-
-
         try {
             $this->auth->verify();
             if (empty($idpet)) {

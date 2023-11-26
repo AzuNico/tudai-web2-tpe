@@ -31,7 +31,7 @@
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
                         <td><a href="<?= BASE_URL ?>owner-edit/<?= $owner->ID ?>" class="btn btn-primary"> Editar</a></td>
-                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $owner->ID ?>"> Eliminar</a></td>
+                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $owner->ID ?>" data-item-name="<?= $owner->NOMBRE ?>"> Eliminar</a></td>
                     <?php endif ?>
                 </tr>
 
@@ -40,16 +40,17 @@
     </table>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var eliminarLinks = document.querySelectorAll('.eliminar-item');
+            const eliminarLinks = document.querySelectorAll('.eliminar-item');
 
             eliminarLinks.forEach(function(enlace) {
                 enlace.addEventListener('click', function(event) {
                     event.preventDefault();
-                    var itemId = enlace.getAttribute('data-item-id');
+                    const itemId = enlace.getAttribute('data-item-id');
+                    const itemName = enlace.getAttribute('data-item-name');
 
 
                     Swal.fire({
-                        title: '¿Estás seguro de que quieres eliminar a  <?= $owner->NOMBRE ?> ?',
+                        title: `¿Estás seguro de que quieres eliminar a  ${itemName} ?`,
                         text: "¡No podrás revertir esto!",
                         icon: 'warning',
                         showCancelButton: true,

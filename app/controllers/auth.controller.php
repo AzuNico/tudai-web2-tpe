@@ -8,10 +8,13 @@ class AuthController
     private $model;
     private $view;
 
+    private $notification;
+
     public function __construct()
     {
         $this->model = new UsersModel();
         $this->view = new AuthView();
+        $this->notification = new NotificationController();
     }
 
     public function showLogin()
@@ -27,7 +30,8 @@ class AuthController
 
 
         if (empty($user) || empty($password)) {
-            $this->view->showLogin('Faltan completar datos');
+            $alert = $this->notification->setError('Faltan completar datos');
+            $this->view->showLogin($alert);
             return;
         }
 
@@ -39,7 +43,8 @@ class AuthController
 
             header('Location:' . BASE_URL);
         } else {
-            $this->view->showLogin('Inicio de sesión incorrecto!');
+            $alert = $this->notification->setError('Usuario o contraseña incorrectos');
+            $this->view->showLogin($alert);
         }
     }
 
