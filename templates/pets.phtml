@@ -15,7 +15,8 @@
             <tr>
                 <th>Nombre</th>
                 <th>Años</th>
-                <th>ID Dueño</th>
+                <th>Peso (kg)</th>
+                <th>Tipo</th>
                 <th>Nombre del dueño</th>
                 <th></th>
                 <th></th>
@@ -37,8 +38,9 @@
                 <tr>
                     <td><?= $pet->NOMBRE ?></td>
                     <td><?= $pet->EDAD ?></td>
-                    <td><?= $pet->ID_DUENIO ?></td>
-                    <td><?= $ownerName ?></td>
+                    <td><?= $pet->PESO ?></td>
+                    <td><span class="badge badge-pill badge-info"><?= $pet->TIPO ?></span></td>
+                    <td><span class="badge badge-pill badge-secondary"><?= $ownerName ?></span></td>
                     <td><a href="<?= BASE_URL ?>pet/<?= $pet->ID ?>" class="btn btn-info"> Ver</a></td>
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
