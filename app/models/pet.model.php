@@ -32,7 +32,7 @@ class PetModel {
     public function insertPet($name, $age, $weight, $type, $idowner){
         $query = $this->db->prepare('INSERT INTO `mascotas`(`NOMBRE`, `EDAD`, `PESO`, `TIPO`, `ID_DUENIO`) VALUES (?,?,?,?,?)');
         $query->execute([$name, $age, $weight, $type, $idowner]);
-        // return $this->db->lastInsertId();
+        return $this->db->lastInsertId();
     }
 
     //Esta funcion edita una mascota

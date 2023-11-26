@@ -2,6 +2,8 @@
 require_once './app/models/pet.model.php';
 require_once './app/models/owner.model.php';
 require_once './app/views/pet.view.php';
+require_once './app/controllers/auth.controller.php';
+require_once './app/controllers/notification.controller.php';
 class PetController
 {
     private $petModel;
@@ -10,6 +12,8 @@ class PetController
 
     private $auth;
 
+    private $notification;
+
     public function __construct()
     {
 
@@ -17,6 +21,7 @@ class PetController
         $this->ownerModel = new OwnerModel();
         $this->view = new PetView();
         $this->auth = new AuthHelper();
+        $this->notification = new NotificationController();
     }
 
     public function getAllPets()
@@ -24,6 +29,7 @@ class PetController
         $pets = $this->petModel->getPets();
         $owners = $this->ownerModel->getOwners();
         $this->view->showPets($pets, $owners);
+        $this->notification->clean();
     }
 
     public function getPetById($idpet)
@@ -77,6 +83,8 @@ class PetController
         } else {
 
             $this->view->showCreatePet($owners);
+            $this->notification->clean();
+            return;
         }
     }
 
@@ -84,42 +92,132 @@ class PetController
     //funcion para crear una pet
     public function createPet()
     {
-        $this->auth->verify();
-        $name = $_POST['name'];
-        $age = $_POST['age'];
-        $weight = $_POST['weight'];
-        $type = $_POST['type'];
-        $idowner = $_POST['idowner'];
-        $this->petModel->insertPet($name, $age, $weight, $type, $idowner);
-        header("Location: " . BASE_URL . "list-pets");
+        try {
+            $this->auth->verify();
+
+            $name = $_POST['name'];
+            $age = $_POST['age'];
+            $weight = $_POST['weight'];
+            $type = $_POST['type'];
+            $idowner = $_POST['idowner'];
+
+            if (empty($name) || empty($age) || empty($weight) || empty($type) || empty($idowner)) {
+                $notification = $this->notification->setError("Debe completar todos los campos");
+                $json = json_encode($notification);
+                echo $json;
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
+            $idpet = $this->petModel->insertPet($name, $age, $weight, $type, $idowner);
+
+            if (empty($idpet)) {
+                $notification = $this->notification->setError("No se pudo crear la mascota");
+                echo json_encode($notification);
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
+            $notification = $this->notification->setSuccess("Mascota creada con éxito");
+            echo json_encode($notification);
+            exit;
+            // header("Location: " . BASE_URL . "list-pets");
+        } catch (\Throwable $th) {
+            $this->view->showError500();
+        }
     }
 
     //funcion para mostrar la edición de una pet
     public function showEditPet($idpet)
     {
-        $this->auth->verify();
-        $owners = $this->ownerModel->getOwners();
-        $pet = $this->petModel->getPetByID($idpet);
-        $this->view->showEditPet($pet, $owners);
+        try {
+            $this->auth->verify();
+            if (empty($idpet)) {
+                $this->view->showError404();
+                exit;
+            }
+            $pet = $this->petModel->getPetByID($idpet);
+            if (empty($pet)) {
+                $this->view->showError404();
+                exit;
+            }
+            $owners = $this->ownerModel->getOwners();
+            $this->view->showEditPet($pet, $owners);
+        } catch (\Throwable $th) {
+            //throw $th;
+            $this->view->showError500();
+        }
     }
 
     //funcion para editar una pet
     public function editPet($idpet)
     {
-        $this->auth->verify();
-        $name = $_POST['name'];
-        $age = $_POST['age'];
-        $weight = $_POST['weight'];
-        $type = $_POST['type'];
-        $idowner = $_POST['idowner'];
-        $this->petModel->editPet($idpet, $name, $age, $weight, $type, $idowner);
-        header("Location: " . BASE_URL . "list-pets");
+        try {
+            $this->auth->verify();
+
+            if (empty($idpet)) {
+                $this->view->showError404();
+                exit;
+            }
+
+            $name = $_POST['name'];
+            $age = $_POST['age'];
+            $weight = $_POST['weight'];
+            $type = $_POST['type'];
+            $idowner = $_POST['idowner'];
+
+            if (empty($name) || empty($age) || empty($weight) || empty($type) || empty($idowner)) {
+                $notification = $this->notification->setError("Debe completar todos los campos");
+                $json = json_encode($notification);
+                echo $json;
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
+            $this->petModel->editPet($idpet, $name, $age, $weight, $type, $idowner);
+            $notification = $this->notification->setSuccess("Mascota editada con éxito");
+            echo json_encode($notification);
+        } catch (\Throwable $th) {
+            //throw $th;
+            $this->view->showError500();
+        }
     }
 
     //funcion para eliminar una pet
     public function deletePet($idpet)
     {
-        $this->auth->verify();
-        $this->petModel->deletePet($idpet);
+
+        // if ($params[1] != null) {
+        //     $response = array("status" => 200, "msg" => "La mascota se eliminó correctamente.");
+        //     echo json_encode($response);
+        // } else {
+        //     $response = array("status" => 404, "msg" => "No se pudo eliminar la mascota.");
+        //     echo json_encode($response);
+        // }
+
+
+
+        try {
+            $this->auth->verify();
+            if (empty($idpet)) {
+                $this->view->showError404();
+                exit;
+            }
+
+            $pet = $this->petModel->getPetByID($idpet);
+            if (empty($pet)) {
+                $this->view->showError404();
+                exit;
+            }
+
+            $this->petModel->deletePet($idpet);
+            $response = array("status" => 200, "msg" => "La mascota se eliminó correctamente.");
+            echo json_encode($response);
+            // $notification = $this->notification->setSuccess("Mascota eliminada con éxito");
+            // echo json_encode($notification);
+        } catch (\Throwable $th) {
+            //throw $th;
+            $this->view->showError500();
+        }
     }
 }

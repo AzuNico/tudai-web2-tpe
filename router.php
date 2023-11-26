@@ -45,48 +45,28 @@ switch ($params[0]) {
         $controller->getOwnerById($params[1]);
         break;
     case 'pet':
-        if ($params[1] != null) {
-            $controller = new PetController();
-            $controller->getPetById($params[1]);
-        } else {
-            echo 'Especifique la id de la mascota';
-        }
+        $controller = new PetController();
+        $controller->getPetById($params[1]);
         break;
     case 'add-pet':
         $controller = new PetController();
         $controller->showCreatePet();
         break;
     case 'create-pet':
-        // echo "create-pet";
         $controller = new PetController();
         $controller->createPet();
         break;
     case 'pet-edit':
-        if ($params[1] != null) {
-            $controller = new PetController();
-            $controller->showEditPet($params[1]);
-        } else {
-            echo 'Especifique la id de la mascota';
-        }
+        $controller = new PetController();
+        $controller->showEditPet($params[1]);
         break;
     case 'update-pet':
-        if ($params[1] != null) {
-            $controller = new PetController();
-            $controller->editPet($params[1]);
-        } else {
-            echo 'Especifique la id de la mascota';
-        }
+        $controller = new PetController();
+        $controller->editPet($params[1]);
         break;
     case 'pet-delete':
-        if ($params[1] != null) {
-            $controller = new PetController();
-            $controller->deletePet($params[1]);
-            $response = array("status" => 200, "msg" => "La mascota se eliminó correctamente.");
-            echo json_encode($response);
-        } else {
-            $response = array("status" => 404, "msg" => "No se pudo eliminar la mascota.");
-            echo json_encode($response);
-        }
+        $controller = new PetController();
+        $controller->deletePet($params[1]);
         break;
     case 'add-owner':
         $controller = new OwnerController();
