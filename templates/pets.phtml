@@ -1,10 +1,13 @@
 <?php require_once 'templates/header.phtml' ?>
 <?php if (empty($pets)) : ?>
-    <?php
-    $description = 'No hay mascotas.';
-    $type = 'pet';
-    require_once 'templates/emptyState.phtml'
-    ?>
+    <div class="emptyContainer">
+        <img src="<?= BASE_URL ?>assets/img/emptyPet.png" alt="Empty state" width="350">
+        <?php
+        $description = 'No hay mascotas.';
+        $type = 'pet';
+        require_once 'templates/emptyState.phtml'
+        ?>
+    </div>
 <?php else : ?>
     <table class="table">
         <h2>Mascotas</h2>

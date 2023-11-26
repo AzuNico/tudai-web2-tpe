@@ -28,9 +28,23 @@ class OwnerController
 
     public function getOwnerById($idowner)
     {
-        $owner = $this->model->getOwnerByID($idowner);
-        $pets = $this->petModel->getPetsByOwner($idowner);
-        $this->view->showSpecificOwner($owner, $pets);
+        try {
+            if (empty($idowner)) {
+                $this->view->showError404();
+                exit;
+            }
+            $owner = $this->model->getOwnerByID($idowner);
+
+            if (empty($owner)) {
+                $this->view->showError404();
+                exit;
+            }
+
+            $pets = $this->petModel->getPetsByOwner($idowner);
+            $this->view->showSpecificOwner($owner, $pets);
+        } catch (\Throwable $th) {
+            $this->view->showError500();
+        }
     }
 
 

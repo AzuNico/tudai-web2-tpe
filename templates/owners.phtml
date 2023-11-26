@@ -1,11 +1,14 @@
 <?php require_once 'templates/header.phtml' ?>
 
 <?php if (empty($owners)) : ?>
-    <?php
-    $description = 'No hay dueños.';
-    $type = 'owner';
-    require_once 'templates/emptyState.phtml'
-    ?>
+    <div class="emptyContainer">
+        <img src="<?= BASE_URL ?>assets/img/ownerPetEmpty.png" alt="Empty state" width="350">
+        <?php
+        $description = 'No hay dueños registrados.';
+        $type = 'owner';
+        require_once 'templates/emptyState.phtml'
+        ?>
+    </div>
 <?php else : ?>
 
     <table class="table">
@@ -28,7 +31,7 @@
                     <!-- si esta logueado puede eliminar o editar item -->
                     <?php if (AuthHelper::isLogged()) : ?>
                         <td><a href="<?= BASE_URL ?>owner-edit/<?= $owner->ID ?>" class="btn btn-primary"> Editar</a></td>
-                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $owner->ID ?>" > Eliminar</a></td>
+                        <td><a href="#" class="eliminar-item btn btn-danger" data-item-id="<?= $owner->ID ?>"> Eliminar</a></td>
                     <?php endif ?>
                 </tr>
 
@@ -67,7 +70,7 @@
                                         'success'
                                     ).then((result) => {
                                         window.location.href = '<?= BASE_URL ?>list-owners';
-                                    });                                
+                                    });
                                     return;
                                 }
                                 if (data.status == 403) {

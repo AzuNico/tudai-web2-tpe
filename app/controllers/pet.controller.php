@@ -45,10 +45,23 @@ class PetController
 
     public function getPetsByOwner($idOwner)
     {
-        $pets = $this->petModel->getPetsByOwner($idOwner);
-        $owner = $this->ownerModel->getOwnerByID($idOwner);
+        try {
+            if (empty($idOwner)) {
+                $this->view->showError404();
+                exit;
+            }
+            $pets = $this->petModel->getPetsByOwner($idOwner);
+            $owner = $this->ownerModel->getOwnerByID($idOwner);
 
-        $this->view->showPetsByOwner($owner, $pets);
+            if (empty($pets) || empty($owner)) {
+                $this->view->showError404();
+                exit;
+            }
+
+            $this->view->showPetsByOwner($owner, $pets);
+        } catch (\Throwable $th) {
+            $this->view->showError500();
+        }
     }
 
     //------ ABM PETS ------ //

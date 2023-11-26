@@ -39,3 +39,10 @@
 .errorHTTP a {
   margin-top: 30px;
 }
+
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

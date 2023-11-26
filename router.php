@@ -37,27 +37,12 @@ switch ($params[0]) {
         $controller->getAllPets();
         break;
     case 'pets-by-owner':
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            // Verifica si se ha enviado el formulario
-            $idowner = $_POST['idowner'];
-            $currentUrl = $_SERVER['REQUEST_URI'];
-            header("Location: " . $_SERVER['REQUEST_URI'] . "$idowner");
-            exit;
-        } else
-            if ($params[1] != null) {
-            $controller = new PetController();
-            $controller->getPetsByOwner($params[1]);
-        } else {
-            echo 'Especifique la id del dueño';
-        }
+        $controller = new PetController();
+        $controller->getPetsByOwner($params[1]);
         break;
     case 'owner':
-        if ($params[1] != null) {
-            $controller = new OwnerController();
-            $controller->getOwnerById($params[1]);
-        } else {
-            echo 'Especifique la id del dueño';
-        }
+        $controller = new OwnerController();
+        $controller->getOwnerById($params[1]);
         break;
     case 'pet':
         if ($params[1] != null) {
