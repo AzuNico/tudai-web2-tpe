@@ -109,6 +109,14 @@ class PetController
                 exit;
             }
 
+            if (!is_numeric($age) || !is_numeric($weight)) {
+                $notification = $this->notification->setError("La edad y el peso deben ser números");
+                $json = json_encode($notification);
+                echo $json;
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
             $idpet = $this->petModel->insertPet($name, $age, $weight, $type, $idowner);
 
             if (empty($idpet)) {

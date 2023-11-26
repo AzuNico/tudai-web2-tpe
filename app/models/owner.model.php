@@ -24,6 +24,14 @@ class OwnerModel
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    // Obtener owner por mail
+    public function getOwnerByEmail($email)
+    {
+        $query = $this->db->prepare('SELECT * FROM `duenio` WHERE `MAIL` = ?');
+        $query->execute([$email]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     //Esta funcion hace un alta de un dueño
     public function insertOwner($name, $email, $tel)
     {

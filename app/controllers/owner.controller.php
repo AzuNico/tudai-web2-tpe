@@ -77,6 +77,22 @@ class OwnerController
                 exit;
             }
 
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $notification = $this->notification->setError("El email ingresado no es válido");
+                $json = json_encode($notification);
+                echo $json;
+                exit;
+            }
+
+            $owner = $this->model->getOwnerByEmail($email);
+            if (!empty($owner)) {
+                $notification = $this->notification->setError("Ya existe un dueño con ese email");
+                $json = json_encode($notification);
+                echo $json;
+                exit;
+            }
+
+
             $this->model->insertOwner($name, $email, $phone);
             $notification = $this->notification->setSuccess("Dueño creado con éxito");
             $notification['url'] = BASE_URL . 'list-owners';
