@@ -8,4 +8,8 @@ class AuthView extends View{
     public function showLoginError($alert = null) {
         require './templates/login.phtml';
     }
+
+    public function showRegister($alert = null) {
+        require './templates/register.phtml';
+    }
 }

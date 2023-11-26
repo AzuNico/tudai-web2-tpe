@@ -31,6 +31,14 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->auth();
         break;
+    case 'show-register':
+        $controller = new AuthController();
+        $controller->showRegister();
+        break;
+    case 'register':
+        $controller = new AuthController();
+        $controller->register();
+        break;
     case 'list-owners':
         $controller = new OwnerController();
         $controller->getAllOwners();
