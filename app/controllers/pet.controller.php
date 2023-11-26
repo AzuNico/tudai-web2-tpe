@@ -109,6 +109,15 @@ class PetController
                 exit;
             }
 
+            $owner = $this->ownerModel->getOwnerByID($idowner);
+            if (empty($owner)) {
+                $notification = $this->notification->setError("El dueño no existe");
+                $json = json_encode($notification);
+                echo $json;
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
             if (!is_numeric($age) || !is_numeric($weight)) {
                 $notification = $this->notification->setError("La edad y el peso deben ser números");
                 $json = json_encode($notification);
@@ -177,6 +186,23 @@ class PetController
 
             if (empty($name) || empty($age) || empty($weight) || empty($type) || empty($idowner)) {
                 $notification = $this->notification->setError("Debe completar todos los campos");
+                $json = json_encode($notification);
+                echo $json;
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
+            $owner = $this->ownerModel->getOwnerByID($idowner);
+            if (empty($owner)) {
+                $notification = $this->notification->setError("El dueño no existe");
+                $json = json_encode($notification);
+                echo $json;
+                // header("Location: " . BASE_URL . "add-pet");
+                exit;
+            }
+
+            if (!is_numeric($age) || !is_numeric($weight)) {
+                $notification = $this->notification->setError("La edad y el peso deben ser números");
                 $json = json_encode($notification);
                 echo $json;
                 // header("Location: " . BASE_URL . "add-pet");
